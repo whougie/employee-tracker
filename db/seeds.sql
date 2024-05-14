@@ -12,9 +12,9 @@ VALUES
 
 INSERT INTO role (title, salary, department_id)
 VALUES
-('software developer', 120000, 5),
-('finance specialist', 75000, 4),
-('secetary', 55000, 3),
+('Software Developer', 120000, 5),
+('Finance Specialist', 75000, 4),
+('Secetary', 55000, 3),
 ('HR specialist', 65000, 1),
 ('Linux Admin', 100000, 2),
 ('Manager', 150000, 5),
