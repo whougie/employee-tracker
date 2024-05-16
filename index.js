@@ -55,7 +55,7 @@ async function displayOptions() {
   } else if (result.option === 'Add an Employee') {
     await addEmployee();
   }
- 
+  
   displayOptions();
 }
 
@@ -113,11 +113,8 @@ async function addEmployee () {
   } else {
     const selectedManager = managers.filter( manager => {
       const firstAndLastName = result.selectedManager.split(' ');
-      console.log(manager)
       return manager.first_name === firstAndLastName[0] && manager.last_name === firstAndLastName[1];
     })
-    console.log("setting result.selectedManager");
-    console.log(selectedManager);
     result.selectedManager = selectedManager;
   }
   console.log(result);
