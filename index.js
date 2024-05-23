@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 const Department = require('./lib/department');
 const Employee = require('./lib/employee');
 const Role = require('./lib/role');
+const asciiArt = require('ascii-art');
 
 const department = new Department(pool);
 const employee = new Employee(pool);
@@ -25,6 +26,10 @@ async function main() {
 async function displayOptions() {
   const choices = ['View All Employees', 'Add an Employee', 'Update Employee Role', 'View All Departments', 'Add a Department', 'View All Roles', 'Add a Role']
   
+  const rendered = await asciiArt.font("Employee Manager", 'doom').completed();
+  
+  console.log(asciiArt.style(rendered, "green", true));
+
   const result = await inquirer.prompt([
     {
       type: 'list',
@@ -59,7 +64,6 @@ async function displayOptions() {
 ////
 async function addRole() {
   const departments = await department.getAll();
-  // console.table(departments);
   
   const result = await inquirer.prompt([ 
     {
@@ -167,8 +171,6 @@ async function addEmployee () {
     }
   ])
   
-  
-  
   // setting result to hold the actual role object for the selected one instead of just the title
   const selectedRole = roles.filter( role => result.selectedRole === role.title);
   result.selectedRole = selectedRole;
@@ -186,27 +188,3 @@ async function addEmployee () {
   
   await employee.addEmployee(result.firstName, result.lastName, result.selectedRole[0].id, result.selectedManager[0].id);
 }
-
-
-
-// Display options in inquirer
-// -View all departments
-//- View all roles
-//- View all employees
-//- Add a Role
-// - Add and Employee
-// - Update an employee role
-
-// - Figure out how to collect the id when an employee is selected
-// - Figure out how to collect the id when a role is selected
-
-//---
-// DB Functionalities
-// XX -View all departments
-// XX- View all roles
-// XX - View all employees
-// XX - Add a Role
-// XX - Add and Employee
-// XX - Update an employee role
-// XX- Join Role table with Department
-// XX- Join Employee table with Role table, Department table, and itself for the manager Id
