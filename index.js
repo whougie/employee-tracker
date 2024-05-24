@@ -20,16 +20,15 @@ main();
 
 // Created this function to help enforce the order of executions to the database
 async function main() {
+  const rendered = await asciiArt.font("Employee Tracker", 'doom').completed();
+  console.log(asciiArt.style(rendered, "green", true));
+  
   displayOptions();
 }
 
 async function displayOptions() {
   const choices = ['View All Employees', 'Add an Employee', 'Update Employee Role', 'View All Departments', 'Add a Department', 'View All Roles', 'Add a Role']
   
-  const rendered = await asciiArt.font("Employee Manager", 'doom').completed();
-  
-  console.log(asciiArt.style(rendered, "green", true));
-
   const result = await inquirer.prompt([
     {
       type: 'list',
@@ -67,22 +66,22 @@ async function addRole() {
   
   const result = await inquirer.prompt([ 
     {
-    type: 'input',
-    message: 'Please enter a new role: ',
-    name: "newTitle"
-  },
-  {
-    type: 'input',
-    message: 'Please enter a salary for new role: ',
-    name: "newSalary"
-  },
-  {
-    type: 'list',
-    message: "Please enter a department for new role: ",
-    name: "newDepartment",
-    choices: departments.map( (department) => department.name)
-  }
-]);
+      type: 'input',
+      message: 'Please enter a new role: ',
+      name: "newTitle"
+    },
+    {
+      type: 'input',
+      message: 'Please enter a salary for new role: ',
+      name: "newSalary"
+    },
+    {
+      type: 'list',
+      message: "Please enter a department for new role: ",
+      name: "newDepartment",
+      choices: departments.map( (department) => department.name)
+    }
+  ]);
   
   const selectedDepartment = departments.filter( (department) => department.name === result.newDepartment)
   

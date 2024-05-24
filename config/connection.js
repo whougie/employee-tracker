@@ -8,7 +8,6 @@ const pool = new Pool(
     host: 'localhost',
     database: process.env.DB_NAME
   },
-  console.log("Connecting to the company_db!")
 );
 
 module.exports=pool
